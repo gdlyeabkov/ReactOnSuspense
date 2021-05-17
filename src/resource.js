@@ -1,3 +1,5 @@
+import ReactDOM from 'react-dom'
+
 export function useResource(){
 	return {
         posts:wrapPromise(fetchPosts()),
@@ -28,7 +30,7 @@ function wrapPromise(promise){
 			}else if(status='error'){
 				throw result
 			}
-			}else if(status='success'){
+			else if(status='success'){
 				return result
 			}
 		}
@@ -39,7 +41,7 @@ function fetchPosts(){
         fetch('https://jsonplaceholder.typicode.com/posts?_limit=5').then(res=>res.json())
     )
 }
-function fetchUsers(){
+async function fetchUsers(){
     await delay(750)
     const res=await fetch('https://jsonplaceholder.typicode.com/users?_limit=5')
     return await res.json()
